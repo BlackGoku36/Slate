@@ -1,7 +1,3 @@
-## Undefined Leap
+# Slate
 
-Organization's research, experiment and its findings will be documented and hosted here.
-
-## License
-
-This is licensed under zlib. Check `License.md` for more info.
+A smol static site generator made by puking out python
