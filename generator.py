@@ -167,7 +167,7 @@ def get_home_button(file_name):
 '''
 
 # Copy resources
-shutil.copy(profile["profile_picture"], '../docs/'+profile["profile_picture"])
+shutil.copy('../'+profile["profile_picture"], '../docs/'+profile["profile_picture"])
 shutil.copy('css/blog.css', '../docs/blog.css')
 shutil.copy('css/index.css', '../docs/index.css')
 shutil.copy('js/highlight.min.js', '../docs/highlight.min.js')
