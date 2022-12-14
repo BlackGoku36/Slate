@@ -61,7 +61,7 @@ with open('js/theming.js', 'r') as file:
     switch_theme_btn_js += ''.join(file.readlines())
     switch_theme_btn_js += "</script>"
 
-with open('profile.json', 'r') as file:
+with open('../profile.json', 'r') as file:
     profile = json.loads(''.join(file.readlines()))
 
 for blog in profile["blogs"]:
@@ -153,10 +153,10 @@ indexHTML = [
 ]
 
 # Clean build docs
-remove_dir("docs")
-create_dir("docs")
+remove_dir("../docs")
+create_dir("../docs")
 
-with open('docs/index.html', 'w') as file:
+with open('../docs/index.html', 'w') as file:
     file.writelines(indexHTML)
 
 
@@ -167,19 +167,19 @@ def get_home_button(file_name):
 '''
 
 # Copy resources
-shutil.copy(profile["profile_picture"], 'docs/'+profile["profile_picture"])
-shutil.copy('css/blog.css', 'docs/blog.css')
-shutil.copy('css/index.css', 'docs/index.css')
-shutil.copy('js/highlight.min.js', 'docs/highlight.min.js')
+shutil.copy(profile["profile_picture"], '../docs/'+profile["profile_picture"])
+shutil.copy('css/blog.css', '../docs/blog.css')
+shutil.copy('css/index.css', '../docs/index.css')
+shutil.copy('js/highlight.min.js', '../docs/highlight.min.js')
 
 # Clean build assets
-remove_dir("docs/assets")
-create_dir("docs/assets")
+remove_dir("../docs/assets")
+create_dir("../docs/assets")
 
-with os.scandir('blogs/assets/') as assets:
+with os.scandir('../blogs/assets/') as assets:
     for asset in assets:
         if (".png" or ".jpeg" or ".mp4" or ".mov") in asset.name:
-            shutil.copy('blogs/assets/'+asset.name, 'docs/assets/'+asset.name)
+            shutil.copy('../blogs/assets/'+asset.name, '../docs/assets/'+asset.name)
 
 def md_to_html(title, file_name):
     process = Popen([
@@ -187,8 +187,8 @@ def md_to_html(title, file_name):
             '--metadata', 'title='+title,
             '-s', '--no-highlight', 
             '-c', ((len(file_name.split('/')) - 1) * '../') + 'blog.css', 
-            'docs/'+file_name, 
-            '-o', 'docs/'+file_name[:-3]+'.html'
+            '../docs/'+file_name, 
+            '-o', '../docs/'+file_name[:-3]+'.html'
         ], stdout=PIPE, stderr=PIPE)
     stdout, stderr = process.communicate()
     error = bytes.decode(stderr)
@@ -202,7 +202,7 @@ def create_blog(title, file_name, dir_name):
     blogContents.append('<h1>' + profile["name"] + "</h1>")
     blogContents.append('<div class="contents">')
     blogContents.append(get_home_button(file_name))
-    with open('blogs/' + file_name, 'r') as file:
+    with open('../blogs/' + file_name, 'r') as file:
         blogContents.append(''.join(file.readlines()))
     blogContents.append("\n")
     blogContents.append('\n<script src="' + ((len(file_name.split('/')) - 1) * '../') +'highlight.min.js"></script><script>hljs.highlightAll();</script>')
@@ -210,11 +210,11 @@ def create_blog(title, file_name, dir_name):
     blogContents.append('</div>')
     blogContents.append(copyright)
     if(dir_name != ""):
-        create_dir('docs/'+dir_name)
-    with open('docs/' + file_name, 'w') as file:
+        create_dir('../docs/'+dir_name)
+    with open('../docs/' + file_name, 'w') as file:
         file.writelines(blogContents)
     md_to_html(title, file_name)
-    os.remove('docs/' + file_name)
+    os.remove('../docs/' + file_name)
 
 for blog in profile["blogs"]:
     isSeries = False
