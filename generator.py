@@ -190,7 +190,8 @@ create_dir("../docs/assets")
 
 with os.scandir('../blogs/assets/') as assets:
     for asset in assets:
-        if (".png" or ".jpeg" or ".mp4" or ".mov") in asset.name:
+        asset_ext = os.path.splitext(asset)[1]
+        if (asset_ext == ".png" or asset_ext == ".jpeg" or asset_ext == ".mp4" or asset_ext == ".mov"):
             shutil.copy('../blogs/assets/'+asset.name, '../docs/assets/'+asset.name)
 
 def md_to_html(title, file_name):
