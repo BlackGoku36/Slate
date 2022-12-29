@@ -137,6 +137,12 @@ try:
 except:
     print("-> copyright skipped")
 
+analytics = ""
+try:
+    analytics = profile["analytics"]
+except:
+    print("-> Analytics skipped")
+
 indexHTML = [
     '''<!DOCTYPE html><html><head><meta charset="utf-8">
     <link rel="stylesheet" href="index.css"><meta name="viewport" content="width=device-width, initial-scale=1">
@@ -158,7 +164,7 @@ indexHTML = [
     </div>''', 
     contact, 
     '''</div>''', 
-    copyright, switch_theme_btn_js,'''
+    copyright, switch_theme_btn_js, analytics, '''
     </body>
     </html>
     '''
@@ -220,10 +226,7 @@ def create_blog(title, file_name, dir_name):
     blogContents.append("\n")
     blogContents.append('\n<script src="' + ((len(file_name.split('/')) - 1) * '../') +'highlight.min.js"></script><script>hljs.highlightAll();</script>')
     blogContents.append(switch_theme_btn_js)
-    try:
-        blogContents.append(profile["analytics"])
-    except:
-        print("-> Github account skipped")
+    blogContents.append(analytics)
     blogContents.append('</div>')
     blogContents.append(copyright)
     if(dir_name != ""):
