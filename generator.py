@@ -220,6 +220,10 @@ def create_blog(title, file_name, dir_name):
     blogContents.append("\n")
     blogContents.append('\n<script src="' + ((len(file_name.split('/')) - 1) * '../') +'highlight.min.js"></script><script>hljs.highlightAll();</script>')
     blogContents.append(switch_theme_btn_js)
+    try:
+        blogContents.append(profile["analytics"])
+    except:
+        print("-> Github account skipped")
     blogContents.append('</div>')
     blogContents.append(copyright)
     if(dir_name != ""):
