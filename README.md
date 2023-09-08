@@ -9,7 +9,7 @@ A smol static site generator made for myself by puking out python code. But you 
 ```json
 {
     "name": "Your name",
-    "description": "Your blogpost now belong to me",
+    "description": ["Your blogpost now belong to me"],
     "blogs": [
         {
             "name": "Test",
@@ -56,4 +56,3 @@ python3 generator.py <path/to/pandoc_bin>
 ## License
 
 This is licensed under zlib. Check `License.md` for more info.
-

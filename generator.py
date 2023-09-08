@@ -155,15 +155,15 @@ indexHTML = [
     <div class="profile">
         <img src="''', profile["profile_picture"], '''"
             width="150" height="150" style="float:left; margin-right: 15px; margin-top: 5px;">
-        <p>''',profile["description"],'''</p>
+        <p>''','<br>'.join(profile["description"]),'''</p>
         <br>
     </div>
     <h2>BLOGS</h2><hr>
     <div class="project">
         <ul>''', ''.join(blogs), '''</ul>
-    </div>''', 
-    contact, 
-    '''</div>''', 
+    </div>''',
+    contact,
+    '''</div>''',
     copyright, switch_theme_btn_js, analytics, '''
     </body>
     </html>
@@ -202,11 +202,11 @@ with os.scandir('../blogs/assets/') as assets:
 
 def md_to_html(title, file_name):
     process = Popen([
-            path_to_pandoc, 
+            path_to_pandoc,
             '--metadata', 'title='+title,
-            '-s', '--no-highlight', 
-            '-c', ((len(file_name.split('/')) - 1) * '../') + 'blog.css', 
-            '../docs/'+file_name, 
+            '-s', '--no-highlight',
+            '-c', ((len(file_name.split('/')) - 1) * '../') + 'blog.css',
+            '../docs/'+file_name,
             '-o', '../docs/'+file_name[:-3]+'.html'
         ], stdout=PIPE, stderr=PIPE)
     stdout, stderr = process.communicate()
