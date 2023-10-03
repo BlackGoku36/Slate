@@ -116,11 +116,6 @@ for blog in profile["blogs"]:
 # Contacts icons
 
 try:
-    contacts.append("<a href='"+profile["github"]+"'>"+githubSVG+"</a>")
-except:
-    print("-> Github account skipped")
-
-try:
     contacts.append("<a href='"+profile["twitter"]+"'>"+twitterSVG+"</a>")
 except:
     print("-> Twitter account skipped")
@@ -131,11 +126,6 @@ except:
     print("-> Mastodon account skipped")
 
 try:
-    contacts.append("<a href='mailto: "+profile["mail"]+"'>"+mailSVG+"</a>")
-except:
-    print("-> Mail skipped")
-
-try:
     contacts.append("<a href='"+profile["instagram"]+"'>"+instagramSVG+"</a>")
 except:
     print("-> Instagram skipped")
@@ -144,6 +134,16 @@ try:
     contacts.append("<a href='"+profile["linkedin"]+"'>"+linkedinSVG+"</a>")
 except:
     print("-> Linkedin skipped")
+
+try:
+    contacts.append("<a href='"+profile["github"]+"'>"+githubSVG+"</a>")
+except:
+    print("-> Github account skipped")
+
+try:
+    contacts.append("<a href='mailto: "+profile["mail"]+"'>"+mailSVG+"</a>")
+except:
+    print("-> Mail skipped")
 
 contact = ""
 if(len(contacts)!=0):
