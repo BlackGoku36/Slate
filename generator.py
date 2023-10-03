@@ -57,6 +57,12 @@ mastodonSVG = '''
             </svg>
             '''
 
+linkedinSVG = '''<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-linkedin"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path><rect x="2" y="9" width="4" height="12"></rect><circle cx="4" cy="4" r="2"></circle></svg>
+'''
+
+instagramSVG = '''<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-instagram"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+'''
+
 # Make button
 switch_theme_btn_html = '''
 <button id="btn" onclick="setTheme()">THEME</button>
@@ -107,6 +113,8 @@ for blog in profile["blogs"]:
         else:
             blogs.append("<a href='"+link[:-3]+".html"+"'> <li>"+name+"</li></a>")
 
+# Contacts icons
+
 try:
     contacts.append("<a href='"+profile["github"]+"'>"+githubSVG+"</a>")
 except:
@@ -126,6 +134,16 @@ try:
     contacts.append("<a href='mailto: "+profile["mail"]+"'>"+mailSVG+"</a>")
 except:
     print("-> Mail skipped")
+
+try:
+    contacts.append("<a href='"+profile["instagram"]+"'>"+instagramSVG+"</a>")
+except:
+    print("-> Instagram skipped")
+
+try:
+    contacts.append("<a href='"+profile["linkedin"]+"'>"+linkedinSVG+"</a>")
+except:
+    print("-> Linkedin skipped")
 
 contact = ""
 if(len(contacts)!=0):
