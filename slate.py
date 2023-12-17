@@ -181,9 +181,7 @@ def create_blog(site, blog):
     if(os.path.exists(path_to_input_blog) == False):
         print("Path to the input blog directory doesn't exists, please make sure it exists, Path: {" + path_to_input_blog + "}")
         return
-    if(os.path.isdir(path_to_output_blog) == False):
-        print("Path to the output blog directory doesn't exist, please make sure it exists. Path: {" + path_to_output_blog + "}")
-        return
+    os.makedirs(path_to_output_blog, exist_ok=True)
 
     switch_theme_btn_js = ""
     with open('Slate/js/theming.js', 'r') as file:
