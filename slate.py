@@ -1,5 +1,6 @@
 import os
 import shutil
+import sys
 from subprocess import Popen, PIPE
 
 # SVGs
@@ -57,7 +58,7 @@ class Blog:
     title = ""
     link = ""
     disabled = False
-    
+
     def __init__(self, title, link, disabled):
         self.title = title
         self.link = link
@@ -67,8 +68,9 @@ class Series:
     title = ""
     blogs = []
 
-    def __init__(self, title):
+    def __init__(self, title, blogs):
         self.title = title
+        self.blogs = blogs
 
 class Contact:
     svg = ""
@@ -88,10 +90,10 @@ class Contact:
 
     def mastodon(link):
         return Contact(mastodonSVG, link, False)
-    
+
     def linkedin(link):
         return Contact(linkedinSVG, link, False)
-    
+
     def instagram(link):
         return Contact(instagramSVG, link, False)
 
